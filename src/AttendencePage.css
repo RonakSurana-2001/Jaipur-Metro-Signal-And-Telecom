@@ -1,0 +1,22 @@
+
+.containerLayout2{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6%;
+}
+.containerLayout2 table{
+    width:50%;
+    text-align: center;
+}
+.containerLayout1 button{
+    width:180px;
+    height: 80px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(141, 63, 63);
+    color:white;
+    font-size: larger;
+    border-radius: 5px;
+    border: 2px dotted white;
+}

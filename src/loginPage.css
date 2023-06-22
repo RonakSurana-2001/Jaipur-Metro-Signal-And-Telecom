@@ -1,0 +1,90 @@
+.container{
+    /* background-color: aqua; */
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.form-1{
+    background-color: antiquewhite;
+    height: 500px;
+    width: 500px;
+    border-radius: 30px;
+    border-top:30px;
+}
+.LoginHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    /* background-color: aquamarine; */
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.containerEmail{
+    /* background-color: blue; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+.containerEmail input{
+    width: 400px;
+    text-align: center;
+    height: 70px;
+    font-size: larger;
+    border-radius: 5px;
+    border:none
+}
+
+.containerPassword{
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+.containerPassword input{
+    width: 400px;
+    text-align: center;
+    height: 70px;
+    font-size: larger;
+    border:none;
+    border-radius: 5px;
+}
+.btn-submit-Area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: brown; */
+    height:25%;
+}
+.btn-submit{
+    background-color: black;
+    height: 50%;
+    margin-right: 10%;
+    width: 30%;
+    border-radius: 5px;
+    color: white;
+}
+.btn-new{
+    background-color: black;
+    height: 50%;
+    width: 30%;
+    border-radius: 5px;
+    color: white;
+}
+.pass-1{
+    width:"50px"
+}
+.googleauth-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black; */
+}

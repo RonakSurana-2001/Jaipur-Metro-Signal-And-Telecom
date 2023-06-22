@@ -1,0 +1,93 @@
+.container-afl{
+    margin-top: 0%;
+    /* background-color: rgb(170, 231, 231); */
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-afl h1{
+    display: flex;
+    /* background-color: aqua; */
+    height: 70px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: brown;
+    font-style: italic;
+}
+.container-afl form{
+    /* background-color:blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-label{
+    font-size: 40px;
+    text-align: center;
+}
+.form-label-size{
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    border:1px solid black
+}
+.form-label-size-name{
+    height: 50px;
+}
+.form-label-size-reason{
+    height: 150px;
+}
+.tb{
+    display: flex;
+    flex-direction: column;
+}
+
+/*---------------------------------*/
+.card-sample{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+}
+.conti-1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.seti{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.seti-2{
+    height: 50px;
+    width: 100px;
+    background-color: aquamarine;
+    border: none;
+}
+.contin-2{
+    background-color: antiquewhite;
+}
+
+.value{
+    text-align: center;
+    /* background-color: rgb(170, 231, 231); */
+}
+.value h1{
+    /* background-color: aquamarine; */
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color:brown;
+    font-style: italic;
+}
