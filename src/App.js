@@ -10,6 +10,8 @@ import Login from './Components/login'
 import SignUp from './Components/signup'
 import Faults from './Components/faults';
 import NoteState from "./context/NoteState"
+import PasswordReset from './Components/PasswordReset';
+import OtpSection from './Components/OtpSection';
 function App() {
   return (
     <>
@@ -22,6 +24,8 @@ function App() {
           <Route path="/admin/faults" element={<Faults/>}/>
           <Route path="/admin/attendence" element={<Layout/>}/>
           <Route path="/admin/leave" element={<About/>}/>
+          <Route path="/resetPassword" element={<PasswordReset/>}/>
+          <Route path="/resetPassword/otp" element={<OtpSection/>}/>
         </Routes>
       </BrowserRouter>
       </NoteState>

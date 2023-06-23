@@ -92,6 +92,9 @@ function Login() {
                             />
                         </GoogleOAuthProvider>
                     </div>
+                    <div style={{textAlign:"center",padding:"8px"}}>
+                        <a href="/resetPassword">Forgot Password</a>
+                    </div>
                 </form>
             </div>
         </>
