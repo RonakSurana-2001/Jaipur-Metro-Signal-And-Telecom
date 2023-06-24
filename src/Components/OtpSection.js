@@ -9,20 +9,20 @@ function OtpSection() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3001/api/auth/resetPasswordEmail", {
+    const response = await fetch("http://localhost:3001/api/auth/verifyOTP", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ OTP: credentials.OTP })
+      body: JSON.stringify({ OTP: credentials.OTP,emailReciever:localStorage.getItem("email") })
     });
     const json = await response.json();
     if (json != "ok") {
       console.log("No users exits");
     }
     else {
-      // console.log(json);
-      navigate("/resetPassword/otp");
+      localStorage.setItem("OTP",credentials.OTP);
+      navigate('/resetPassword/newPassword')
     }
   }
 
@@ -45,10 +45,10 @@ function OtpSection() {
         </div>
         <div className="containerEmail">
           {/* <label htmlFor="email">Email address</label> */}
-          <input type="email" className="" id="OTP" placeholder="Enter OTP" value={credentials.OTP} onChange={onChange} name="OTP" />
+          <input type="text" className="" id="OTP" placeholder="Enter OTP" value={credentials.OTP} onChange={onChange} name="OTP" />
         </div>
         <div className='btn-submit-Area'>
-          <button onSubmit={handleSubmit} className="btn-submit">Verify</button>
+          <button type="submit" className="btn-submit">Verify</button>
         </div>
       </form>
     </div>

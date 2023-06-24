@@ -3,23 +3,13 @@ const router = express.Router();
 const User = require('../models/User')
 const store = require("store2");
 var nodemailer = require('nodemailer');
-// var bcrypt = require('bcryptjs');
-// var jwt = require('jsonwebtoken');
-// const JWT_SECRET="ronakismyname";
-let randomNum = Math.floor(Math.random() * 10).toString()+Math.floor(Math.random() * 10).toString()+Math.floor(Math.random() * 10).toString()+Math.floor(Math.random() * 10).toString();
+const checkOTP = [];
 router.post('/createuser', async (req, res) => {
-    // console.log(req.body);
     const { email } = req.body;
-    // var salt = bcrypt.genSaltSync(10);
-    // const secPass=await bcrypt.hash(req.body.password,salt);
-    // req.body.password=secPass;
     User.find({ email }).exec().then((users) => {
         if (users.length == 0) {
             const user = User(req.body);
             user.save();
-            // const authToken=jwt.sign(user,JWT_SECRET);
-            // console.log({authToken});
-            // console.log(user);
             res.json(req.body);
         }
         else {
@@ -48,41 +38,90 @@ router.post('/resetPasswordEmail', (req, res) => {
         if (users.length != 0) {
             res.json("ok");
         }
-        // store('email',email);
     })
         .catch((error) => {
             console.log("Some Error encountered");
         });
 })
 
+function makeOtp(mailVal) {
+    checkOTP.push([mailVal, Math.floor(Math.random() * 10).toString() + Math.floor(Math.random() * 10).toString() + Math.floor(Math.random() * 10).toString() + Math.floor(Math.random() * 10).toString()])
+}
+
 router.post('/OTPSend', (req, res) => {
     const { emailReciever } = req.body;
+    makeOtp(emailReciever);
+    let devOtp = 0;
+    checkOTP.map((ta) => {
+        if (ta[0] === emailReciever) {
+            devOtp = ta[1];
+        }
+    })
+    // console.log(checkOTP);
     const transporter = nodemailer.createTransport({
         host: "smtp.office365.com",
         port: 587,
         secure: false,
         auth: {
-            user: 'ronakprivate@outlook.com',
-            pass: 'ronaktest@2023'
+            user: 'xxxxx@outlook.com',
+            pass: 'xxxxx'
         },
-        tls:{
-            rejectUnauthorized:false,
+        tls: {
+            rejectUnauthorized: false,
         }
     });
     const mailOptions = {
-        from: 'ronakprivate@outlook.com',
+        from: 'xxxxx@outlook.com',
         to: emailReciever,
         subject: 'Verification from Metro',
-        text: 'OTP is '+randomNum
-    };      
-    transporter.sendMail(mailOptions, function(error, info) {
+        text: 'OTP is ' + devOtp
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-          console.log('Error occurred:', error.message);
+            console.log('Error occurred:', error.message);
         } else {
-          console.log('Email sent successfully!');
-          console.log('Message ID:', info.messageId);
+            console.log('Email sent successfully!');
+            console.log('Message ID:', info.messageId);
         }
     });
+})
+
+router.post('/verifyOTP', (req, res) => {
+    const { OTP, emailReciever } = req.body;
+    let flag = 0;
+    checkOTP.map((ta) => {
+        if (ta[0] === emailReciever && ta[1] === OTP) {
+            res.json("ok")
+            flag = 1;
+        }
+    })
+    if (flag === 0) {
+        res.json("Wrong");
+    }
+})
+
+router.post('/updatePassword', (req, res) => {
+    const { email, updatedpasswordN, OTP } = req.body;
+    // console.log(checkOTP);
+    let flag=0;
+    checkOTP.map((ta) => {
+        if (email === ta[0] && OTP === ta[1]) {
+            User.findOneAndUpdate({ email },{password:updatedpasswordN}).exec().then((users) => {
+                if (users.length != 0) {
+                    flag=1;
+                    res.json("ok");
+                }
+                // store('email',email);
+            })
+                .catch((error) => {
+                    console.log("Some Error encountered");
+                });
+        }
+    })
+    if(flag===1)
+    {
+        res.json("nn");
+    }
 })
 
 module.exports = router;

@@ -12,9 +12,10 @@ This is a Website made by me for the Jaipur Metro Signal and Telecom Department.
 ## Features
 
 - Login/Logout
-- Add New User
+- Add New User  
+- Reset Password
 - Mark Attendence
-- Apply for leave
+- Apply for leave  
 
 
 ## Installation

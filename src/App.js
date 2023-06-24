@@ -12,6 +12,7 @@ import Faults from './Components/faults';
 import NoteState from "./context/NoteState"
 import PasswordReset from './Components/PasswordReset';
 import OtpSection from './Components/OtpSection';
+import NewPassword from './Components/NewPassword';
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
           <Route path="/admin/leave" element={<About/>}/>
           <Route path="/resetPassword" element={<PasswordReset/>}/>
           <Route path="/resetPassword/otp" element={<OtpSection/>}/>
+          <Route path="/resetPassword/newPassword" element={<NewPassword/>}/>
         </Routes>
       </BrowserRouter>
       </NoteState>
