@@ -16,6 +16,7 @@ This is a Website made by me for the Jaipur Metro Signal and Telecom Department.
 - Reset Password
 - Mark Attendence
 - Apply for leave  
+- Google Sheet to list down faults in System 
 
 
 ## Installation
