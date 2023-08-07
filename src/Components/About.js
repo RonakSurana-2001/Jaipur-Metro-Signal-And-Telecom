@@ -25,6 +25,7 @@ export default function Layout() {
     const json = await response.json();
     await getAllNotes();
   }
+  
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }

@@ -4,7 +4,6 @@ const User = require('../models/User')
 const Attendence = require("../models/Attendence")
 router.post('/markPresent', (req, res) => {
     const { email,locationN,InTime } = req.body;
-    // console.log(req.body)
     User.find({ email: email }).then((users) => {
         if (users.length !== 0) {
             Attendence.find({ email: email }).then((user) => {

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
-import About from "./About"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AttendenceTable from './AttendenceTable';
 import '../AttendencePage.css'
 export default function Layout() {
@@ -57,7 +55,6 @@ export default function Layout() {
       })
     });
     const json = await response.json();
-    // console.log(mapLink);
     await getAllAttendence();
   }
   const clearAttendence = async () => {
