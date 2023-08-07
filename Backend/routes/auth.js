@@ -6,6 +6,7 @@ var nodemailer = require('nodemailer');
 const checkOTP = [];
 router.post('/createuser', async (req, res) => {
     const { email } = req.body;
+    // console.log(req.body);
     User.find({ email }).exec().then((users) => {
         if (users.length == 0) {
             const user = User(req.body);
