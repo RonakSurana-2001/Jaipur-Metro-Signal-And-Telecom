@@ -32,7 +32,7 @@ function NavScrollExample() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    {window.location.href === 'https://service-3.onrender.com/admin' && 
+    {window.location.href === 'https://master--jaipurmetrosignallingandtelecomtest.netlify.app/admin' && 
       (
         <Welcome/>
       )
