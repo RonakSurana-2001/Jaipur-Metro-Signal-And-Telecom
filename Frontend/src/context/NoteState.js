@@ -5,7 +5,7 @@ const NoteState = (props)=>{
     // let val;
     const [notes, setState] = useState([]);
     const getAllNotes = async () => {
-        const response = await fetch("http://localhost:3001/api/notes/fetchAllNotes", {
+        const response = await fetch("https://service-3.onrender.com/api/notes/fetchAllNotes", {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
