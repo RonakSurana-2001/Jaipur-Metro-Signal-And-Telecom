@@ -5,7 +5,7 @@ function NotesItem(props) {
   const a = useContext(noteContext);
   const { getAllNotes, setState, notes } = a;
   const approveRequest = async (email) => {
-    const response = await fetch("http://localhost:3001/api/notes/approveLeave", {
+    const response = await fetch("https://service-3.onrender.com/api/notes/approveLeave", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ function NotesItem(props) {
     await getAllNotes();
   };
   const rejectRequest = async (email) => {
-    const response = await fetch("http://localhost:3001/api/notes/rejectRequest", {
+    const response = await fetch("https://service-3.onrender.com/api/notes/rejectRequest", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

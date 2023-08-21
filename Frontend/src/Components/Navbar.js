@@ -32,7 +32,7 @@ function NavScrollExample() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    {window.location.href === 'http://localhost:3000/admin' && 
+    {window.location.href === 'https://service-3.onrender.com/admin' && 
       (
         <Welcome/>
       )

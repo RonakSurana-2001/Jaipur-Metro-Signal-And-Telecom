@@ -34,7 +34,7 @@ export default function Layout() {
     }
   }
   const getAllAttendence = async () => {
-    const res = await fetch("http://localhost:3001/api/attendence/getAttendence", {
+    const res = await fetch("https://service-3.onrender.com/api/attendence/getAttendence", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ export default function Layout() {
   }
   const MarkPresent = async () => {
     const currTime=(new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds()).toString();
-    const response = await fetch("http://localhost:3001/api/attendence/markPresent", {
+    const response = await fetch("https://service-3.onrender.com/api/attendence/markPresent", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ export default function Layout() {
     await getAllAttendence();
   }
   const clearAttendence = async () => {
-    const response = await fetch("http://localhost:3001/api/attendence/clearAttendence", {
+    const response = await fetch("https://service-3.onrender.com/api/attendence/clearAttendence", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ export default function Layout() {
   // const [page,setPage]=useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3001/api/notes/createleave", {
+    const response = await fetch("https://service-3.onrender.com/api/notes/createleave", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
