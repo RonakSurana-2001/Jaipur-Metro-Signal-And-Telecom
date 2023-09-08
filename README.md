@@ -21,7 +21,7 @@ This is a Website made by me for the Jaipur Metro Signal and Telecom Department.
 ## Working  
 
 - User can login using 2 Methods either he can create his own id on the platform or login using google id.  
-- There is a special email address admin@mail.com whose password is only know to the administrator and is given some special features like accepting the leave request. 
+- There is a special email address admin@mail.com whose password(=password) is only know to the administrator and is given some special features like accepting the leave request. 
 - To add a new user you have to provide name,email id and a password.  
 - To mark attendence you have to click Mark attendence button and automatically the attendence will be marked of you. You can view in the list below.  
 -  To apply for leave you have to specify you name and reason for leave. You can also delete your request. You can also view that you request is approved by administrator or not.  
