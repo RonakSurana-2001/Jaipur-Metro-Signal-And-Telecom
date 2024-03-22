@@ -88,3 +88,23 @@
     align-items: center;
     /* background-color: black; */
 }
+
+@media screen and (max-width:1000px) {
+    .form-1{
+        background-color: antiquewhite;
+        height: 500px;
+        width: 250px;
+        border-radius: 30px;
+        border-top:30px;
+    }
+    .LoginHeader{
+        /* background-color: aquamarine; */
+        font-size: 30px;
+    }
+    .containerEmail input{
+        width: 200px;
+    }
+    .containerPassword input{
+        width: 200px;
+    }
+}

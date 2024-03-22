@@ -6,18 +6,34 @@
     margin-top: 2%;
     justify-content: center;
     align-items: center;
+    padding: 150px;
 }
-.cont-1 h1{
-    background-color: rgb(206, 180, 230);
-    display: flex;
+.cont-1 div{
+    /* background-color: rgb(206, 180, 230); */
     text-align: center;
     height: 400px;
+    font-family: "Copperplate";  
+    font-weight: bolder  ;
+    color: brown;
     font-size: 80px;
-    width: 600px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     /* background-color: aqua; */
-    border-radius: 50px;
-    border: 5px dotted black;
+    /* border-radius: 50px; */
+    /* border: 5px dotted black; */
+}
+
+@media screen and (max-width:1000px) {
+    .cont-1{
+        height: auto;
+        background-color: none;
+    }
+    .cont-1 div{
+        /* background-color: rgb(206, 180, 230); */
+        text-align: center;
+        height: 400px;
+        font-size: 50px;
+        /* background-color: aqua; */
+        /* border-radius: 50px; */
+        /* border: 5px dotted black; */
+    }
+    
 }

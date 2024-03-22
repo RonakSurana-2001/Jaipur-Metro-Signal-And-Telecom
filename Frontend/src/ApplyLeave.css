@@ -87,7 +87,30 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    font-size: 40px;
     color:brown;
     font-style: italic;
+}
+
+@media screen and (max-width:1000px) {
+    .container-afl h1{
+        font-size: x-larger;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .value h1{
+        font-size: x-larger;
+        text-align: center;
+    }
+    .form-label{
+        font-size: 25px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .form-label-size{
+        width: auto;
+        border-radius: 10px;
+        text-align: center;
+        border:1px solid black
+    }
 }

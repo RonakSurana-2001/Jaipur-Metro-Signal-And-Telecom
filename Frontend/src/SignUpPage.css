@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 .container-sign form div{
     background-color: aqua;
@@ -52,4 +53,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (max-width:1000px) {
+    .heading-page{
+        font-size: 30px;
+    }
+    .container-input{
+        text-align: center;
+        width: 250px;
+        font-size: larger;
+        height: 80px;
+        border: none;
+    }
+    .container-box button{
+        border: none;
+        width: auto;
+        border-radius: 5px;
+        padding: 30px;
+    }
+    .container-sign form{
+        border-radius: 30px;
+        background-color: antiquewhite;
+        width: auto;
+        height: auto;
+    }
 }
