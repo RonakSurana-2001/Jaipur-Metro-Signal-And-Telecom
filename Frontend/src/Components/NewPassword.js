@@ -9,7 +9,7 @@ function NewPassword() {
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const response=await fetch('https://service-3.onrender.com/api/auth/updatePassword',{
+    const response=await fetch('https://website-test-jkzw.onrender.com/api/auth/updatePassword',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'

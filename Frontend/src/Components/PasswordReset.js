@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-let baseUrl="https://service-3.onrender.com"
+let baseUrl="https://website-test-jkzw.onrender.com"
 // let baseUrl="http://localhost:3001"
 
 function PasswordReset() {

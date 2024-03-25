@@ -9,7 +9,7 @@ function OtpSection() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://service-3.onrender.com/api/auth/verifyOTP", {
+    const response = await fetch("https://website-test-jkzw.onrender.com/api/auth/verifyOTP", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ function OtpSection() {
 
   const handleOTPRequest=async(e)=>{
     e.preventDefault();
-    const response = await fetch("https://service-3.onrender.com/api/auth/OTPSend", {
+    const response = await fetch("https://website-test-jkzw.onrender.com/api/auth/OTPSend", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import NotesItem from './NotesItem'
 import noteContext from '../context/noteContext';
 
-const baseUrl="https://service-3.onrender.com"
+const baseUrl="https://website-test-jkzw.onrender.com"
 // const baseUrl="http://localhost:3001"
 
 export default function Layout() {

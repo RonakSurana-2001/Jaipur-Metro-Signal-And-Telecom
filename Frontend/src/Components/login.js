@@ -7,7 +7,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode'
 
-const baseUrl="https://service-3.onrender.com"
+const baseUrl="https://website-test-jkzw.onrender.com"
 // const baseUrl="http://localhost:3001"
 
 function Login() {
