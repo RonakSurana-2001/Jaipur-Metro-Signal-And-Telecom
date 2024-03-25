@@ -4,15 +4,30 @@ const Note = require('../models/Notes')
 const User = require('../models/User');
 const Notes = require('../models/Notes');
 
-router.post('/createleave', (req, res) => {
+
+const jwt = require('jsonwebtoken');
+const {secretKey}=require('../.env')
+
+var { genToken, validateToken } = require('../middleware/generateToken')
+
+
+router.post('/createleave',validateToken, (req, res) => {
     // console.log(req.body);
-    const { email } = req.body;
-    req.body.Status = "Pending";
+    const validToken=jwt.verify(req.body.token,secretKey)
+    const { email } = validToken.email;
+
+    const data={
+        email:validToken.email,
+        name:req.body.name,
+        Reason:req.body.Reason,
+        Status:"Pending"
+    }
+
     Note.find({ email }).exec().then((users) => {
         if (users.length == 0) {
-            const Notes = Note(req.body);
+            const Notes = Note(data);
             Notes.save();
-            res.json(req.body);
+            res.json(data);
         }
         else {
             console.log("Request Already Exits");
@@ -37,7 +52,7 @@ router.post('/approveLeave', (req, res) => {
 })
 
 //Fetch All Notes
-router.get('/fetchAllNotes', (req, res) => {
+router.post('/fetchAllNotes',validateToken, (req, res) => {
     Note.find({}).exec().then((users) => {
         res.json(users);
     })
@@ -55,6 +70,11 @@ router.post('/rejectRequest', (req, res) => {
     .catch((error)=>{
         console.log(error);
     })
+})
+
+router.post('/getEmail', (req, res) => {
+    const validToken=jwt.verify(req.body.token,secretKey)
+    res.json({"email":validToken.email})
 })
 
 module.exports = router;

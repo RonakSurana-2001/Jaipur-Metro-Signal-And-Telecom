@@ -7,20 +7,31 @@ import Form from 'react-bootstrap/Form';
 // import { useNavigate } from 'react-router-dom';
 import NotesItem from './NotesItem'
 import noteContext from '../context/noteContext';
+
+const baseUrl="https://service-3.onrender.com"
+// const baseUrl="http://localhost:3001"
+
 export default function Layout() {
+
+  const a = useContext(noteContext);
+  const { notes, getAllNotes } = a;
+
   useEffect(() => {
     getAllNotes();
   }, [])
+
+
   const [credentials, setCredentials] = useState({ email: "", name: "", reason: "" })
   // const [page,setPage]=useState([]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://service-3.onrender.com/api/notes/createleave", {
+    const response = await fetch(`${baseUrl}/api/notes/createleave`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: localStorage.getItem("email"), name: credentials.name, Reason: credentials.reason })
+      body: JSON.stringify({ token: localStorage.getItem("token"), name: credentials.name, Reason: credentials.reason })
     });
     const json = await response.json();
     await getAllNotes();
@@ -29,10 +40,6 @@ export default function Layout() {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
-
-  const a = useContext(noteContext);
-  const { notes, getAllNotes } = a;
-
 
 
   return (

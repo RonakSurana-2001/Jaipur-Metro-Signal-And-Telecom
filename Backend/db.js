@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PASSWORD=require('./.env');
+const {PASSWORD}=require('./.env');
 const connectToMongo = async () => {
   try {
     await mongoose.connect(`mongodb+srv://ronaksurana2017:${PASSWORD}@cluster0.uikp9u8.mongodb.net/?retryWrites=true&w=majority`,{

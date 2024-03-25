@@ -1,6 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+let baseUrl="https://service-3.onrender.com"
+// let baseUrl="http://localhost:3001"
+
 function PasswordReset() {
     const [credentials, setCredentials] = useState({ email: ""})
     let navigate = useNavigate();
@@ -9,7 +13,7 @@ function PasswordReset() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("https://service-3.onrender.com/api/auth/resetPasswordEmail", {
+        const response = await fetch(`${baseUrl}/api/auth/resetPasswordEmail`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

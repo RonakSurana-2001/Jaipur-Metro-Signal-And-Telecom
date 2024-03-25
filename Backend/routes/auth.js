@@ -2,16 +2,33 @@ const express = require('express')
 const router = express.Router();
 const User = require('../models/User')
 const store = require("store2");
+var bcrypt = require('bcryptjs');
+const {secretKey}=require('../.env')
+
+const jwt = require('jsonwebtoken');
+
+var { genToken, validateToken } = require('../middleware/generateToken')
+
+
 var nodemailer = require('nodemailer');
 const checkOTP = [];
 router.post('/createuser', async (req, res) => {
     const { email } = req.body;
-    // console.log(req.body);
     User.find({ email }).exec().then((users) => {
         if (users.length == 0) {
-            const user = User(req.body);
-            user.save();
-            res.json(req.body);
+            const genPassword = async () => {
+                const passwordGen = req.body.password
+                const hashedPassword = await bcrypt.hash(passwordGen, 8)
+                const value = {
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: hashedPassword
+                }
+                const user = User(value);
+                user.save();
+                res.json(user);
+            }
+            genPassword()
         }
         else {
             console.log("User Already Exits");
@@ -24,9 +41,19 @@ router.post('/createuser', async (req, res) => {
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-    User.find({ email, password }).exec().then((users) => {
-        res.json(users);
-        store('email', email);
+    User.find({ email }).exec().then((users) => {
+        const verifyPassword = async () => {
+            const isMatch = await bcrypt.compare(password, users[0].password);
+            if (isMatch == true) {
+                const getToken = genToken(users)
+                res.json({ "data": getToken });
+                store('email', email);
+            }
+            else {
+                res.json({ "data": "username or password incorrect" })
+            }
+        }
+        verifyPassword()
     })
         .catch((error) => {
             console.log("Some Error encountered");
@@ -103,26 +130,32 @@ router.post('/verifyOTP', (req, res) => {
 
 router.post('/updatePassword', (req, res) => {
     const { email, updatedpasswordN, OTP } = req.body;
-    // console.log(checkOTP);
-    let flag=0;
-    checkOTP.map((ta) => {
-        if (email === ta[0] && OTP === ta[1]) {
-            User.findOneAndUpdate({ email },{password:updatedpasswordN}).exec().then((users) => {
-                if (users.length != 0) {
-                    flag=1;
-                    res.json("ok");
-                }
-                // store('email',email);
-            })
-                .catch((error) => {
-                    console.log("Some Error encountered");
-                });
+
+    const genPassword = async () => {
+        const passwordGen = updatedpasswordN
+        const hashedPassword = await bcrypt.hash(passwordGen, 8)
+        updatedpasswordN = hashedPassword
+        let flag = 0;
+        checkOTP.map((ta) => {
+            if (email === ta[0] && OTP === ta[1]) {
+                User.findOneAndUpdate({ email }, { password: updatedpasswordN }).exec().then((users) => {
+                    if (users.length != 0) {
+                        flag = 1;
+                        res.json("ok");
+                    }
+                    // store('email',email);
+                })
+                    .catch((error) => {
+                        console.log("Some Error encountered");
+                    });
+            }
+        })
+        if (flag === 1) {
+            res.json("nn");
         }
-    })
-    if(flag===1)
-    {
-        res.json("nn");
     }
+    
+    genPassword();
 })
 
 module.exports = router;

@@ -3,12 +3,16 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import '../SignUpPage.css'
+
+const baseUrl="https://service-3.onrender.com"
+// const baseUrl="http://localhost:3001"
+
 function SignUp() {
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "" })
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("https://service-3.onrender.com/api/auth/createuser", {
+        const response = await fetch(`${baseUrl}/api/auth/createuser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

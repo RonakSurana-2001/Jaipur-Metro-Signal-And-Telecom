@@ -2,11 +2,17 @@ const express = require('express')
 const router = express.Router();
 const User = require('../models/User')
 const Attendence = require("../models/Attendence")
-router.post('/markPresent', (req, res) => {
-    const { email,locationN,InTime } = req.body;
-    User.find({ email: email }).then((users) => {
+const jwt = require('jsonwebtoken');
+const {secretKey}=require('../.env')
+
+const {validateToken}=require('../middleware/generateToken')
+
+router.post('/markPresent',validateToken, (req, res) => {
+    const validToken=jwt.verify(req.body.token,secretKey)
+    const { locationN,InTime } = req.body;
+    User.find({ email: validToken.email }).then((users) => {
         if (users.length !== 0) {
-            Attendence.find({ email: email }).then((user) => {
+            Attendence.find({ email: validToken.email }).then((user) => {
                 if (user.length == 0) {
                     const s1 = {
                         "name": users[0].name,
@@ -34,8 +40,11 @@ router.post('/markPresent', (req, res) => {
             // console.log("error 1");
         })
 })
-router.post('/getAttendence', (req, res) => {
+
+
+router.post('/getAttendence',validateToken, (req, res) => {
     Attendence.find({}).then((users) => {
+        // console.log(users)
         res.json(users);
     })
         .catch((error) => {
@@ -43,7 +52,7 @@ router.post('/getAttendence', (req, res) => {
         })
 })
 
-router.get('/clearAttendence', (req, res) => {
+router.post('/clearAttendence', validateToken, (req, res) => {
     Attendence.deleteMany({}).then((users) => {
     })
         .catch((error) => {

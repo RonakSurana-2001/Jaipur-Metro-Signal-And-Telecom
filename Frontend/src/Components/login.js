@@ -6,6 +6,10 @@ import '../loginPage.css'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode'
+
+const baseUrl="https://service-3.onrender.com"
+// const baseUrl="http://localhost:3001"
+
 function Login() {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let navigate = useNavigate();
@@ -14,7 +18,7 @@ function Login() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("https://service-3.onrender.com/api/auth/login", {
+        const response = await fetch(`${baseUrl}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,12 +26,14 @@ function Login() {
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
         const json = await response.json();
-        if (json.length == 0) {
+        console.log(json)
+        if (json.data == "username or password incorrect") {
             console.log("No users exits");
+            alert("Either Username or Password is Incorrect")
         }
         else {
             // console.log(json);
-            localStorage.setItem("email", credentials.email);
+            localStorage.setItem("token", json.data);
             navigate("/admin");
         }
     }

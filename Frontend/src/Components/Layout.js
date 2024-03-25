@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
 import AttendenceTable from './AttendenceTable';
 import '../AttendencePage.css'
+
+const baseUrl="https://service-3.onrender.com"
+// const baseUrl="http://localhost:3001"
+
 export default function Layout() {
   const [users, setUsers] = useState([]);
   const [mapLink, setMapLink] = useState("");
@@ -34,47 +38,73 @@ export default function Layout() {
     }
   }
   const getAllAttendence = async () => {
-    const res = await fetch("https://service-3.onrender.com/api/attendence/getAttendence", {
+    const res = await fetch(`${baseUrl}/api/attendence/getAttendence`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify({
+          token:localStorage.getItem("token")
+      })
     });
     const json1 = await res.json();
     setUsers([json1]);
   }
   const MarkPresent = async () => {
     const currTime=(new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds()).toString();
-    const response = await fetch("https://service-3.onrender.com/api/attendence/markPresent", {
+    const response = await fetch(`${baseUrl}/api/attendence/markPresent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: localStorage.getItem("email"), locationN: mapLink, InTime:currTime
+        locationN: mapLink, InTime:currTime,token:localStorage.getItem("token")
       })
     });
     const json = await response.json();
     await getAllAttendence();
   }
   const clearAttendence = async () => {
-    const response = await fetch("https://service-3.onrender.com/api/attendence/clearAttendence", {
-      method: 'GET',
+    await fetch(`${baseUrl}/api/attendence/clearAttendence`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body:JSON.stringify({
+        token:localStorage.getItem("token")
+      })
     });
     getAllAttendence();
   }
+
+  let [loginEmail,setloginEmail]=useState('')
+
+  useEffect(() => {
+    const getEmailId = async () => {
+      const response = await fetch(`${baseUrl}/api/notes/getEmail`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token: localStorage.getItem('token') })
+      });
+      const json = await response.json();
+      setloginEmail(json.email);
+    };
+
+    getEmailId();
+  }, []); 
+
+
   return (
     <>
       <Navbar />
       <div className='containerLayout1 my-3' style={{ textAlign: 'center' }}>
         <button onClick={() => { MarkPresent() }}>Mark Present</button>
       </div>
-      <div className='containerLayout1 my-3' style={{ textAlign: 'center' }}>
+      {loginEmail=="admin@gmail.com" && <div className='containerLayout1 my-3' style={{ textAlign: 'center' }}>
         <button onClick={() => { clearAttendence() }}>Clear Attendence</button>
-      </div>
+      </div>}
       <div className='containerLayout2'>
         <table style={{ border: "2px solid black" }}>
           <thead>
