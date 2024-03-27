@@ -1,7 +1,7 @@
 import NoteContext from "./noteContext";
 import { useState,useEffect } from "react";
 
-const baseUrl="https://service-3.onrender.com"
+const baseUrl="https://website-test-jkzw.onrender.com"
 // const baseUrl="http://localhost:3001"
 
 const NoteState = (props)=>{
